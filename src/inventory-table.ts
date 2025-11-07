@@ -35,7 +35,6 @@ export class InventoryTable extends LitElement {
     render() {
         return html`
             <table-component .data=${this.data}>
-                <div slot="caption">在庫一覧</div>
                 <text-cell slot="cells" key="name" title="商品名"></text-cell>
                 <numeric-cell slot="cells" key="price" title="価格"></numeric-cell>
                 <numeric-cell slot="cells" key="quantity" title="数量"></numeric-cell>
