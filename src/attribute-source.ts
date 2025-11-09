@@ -31,9 +31,9 @@ export class AttributeSourceExampleTable extends LitElement {
     render() {
         return html`
             <list-component .keys="${this.name.map(v => v.id.toString())}">
-                <generic-cell slot="cells" data-source=${JSON.stringify(this.name)} title="氏名"></generic-cell>
-                <generic-cell slot="cells" data-source=${JSON.stringify(this.address)} title="住所"></generic-cell>
-                <generic-cell slot="cells" data-source=${JSON.stringify(this.phone)} title="電話番号"></generic-cell>
+                <attribute-source-cell slot="cells" data-source=${JSON.stringify(this.name)} title="氏名"></attribute-source-cell>
+                <attribute-source-cell slot="cells" data-source=${JSON.stringify(this.address)} title="住所"></attribute-source-cell>
+                <attribute-source-cell slot="cells" data-source=${JSON.stringify(this.phone)} title="電話番号"></attribute-source-cell>
             </list-component>`;
     }
 }
@@ -109,7 +109,7 @@ export class ListComponent extends LitElement {
     }
 }
 
-@customElement('generic-cell')
+@customElement('attribute-source-cell')
 export class AttributeSourceCellRenderer extends LitElement {
 
     @property({attribute: "data-source"})
@@ -126,7 +126,7 @@ export class AttributeSourceCellRenderer extends LitElement {
     });
 
     template(key: string, attributes: Record<string, string>): TemplateResult {
-        return html`<generic-cell key=${key} .dataSource=${attributes["data-source"]}></generic-cell>`;
+        return html`<attribute-source-cell key=${key} .dataSource=${attributes["data-source"]}></attribute-source-cell>`;
     }
 
     render() {
@@ -134,4 +134,12 @@ export class AttributeSourceCellRenderer extends LitElement {
             complete: (result) => html`<div>${result}</div>`
         });
     }
+}
+
+@customElement("slottable-cell")
+export class SlottableCellRenderer extends LitElement {
+    template(key: string, attributes: Record<string, string>): TemplateResult {
+        return html`<slottable-cell></slottable-cell>`;
+    }
+    
 }
